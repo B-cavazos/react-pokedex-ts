@@ -76,7 +76,7 @@ const PokemonCard:React.FC = () =>{
                             <div className='text-secondary'>Weight</div>
                             <div>{pokemon.weight}</div>
                           </div>
-                          <div className='col'>
+                        <div className='col'>
                             <div className='text-secondary'>Type</div>
                             <div>
                               {pokemon.type.map((t, i) => {
@@ -104,8 +104,24 @@ const PokemonCard:React.FC = () =>{
                                 );
                               })}
                             </div>
-                          </div>
+                          </div>         
+                        <div className='col'>
+                            <div className='text-secondary'>Candy:</div>
+                            <div>{pokemon.candy}</div>
+                            <div className='text-secondary'>Candy Count:</div>
+                            <div>{pokemon.candy_count}</div>
+                            <div className='text-secondary'>Egg:</div>
+                            <div>{pokemon.egg}</div>
                         </div>
+                        <div className='col'>
+                            <div className='text-secondary'>Avg. Spawn:</div>
+                            <div>{pokemon.avg_spawns}</div>
+                            <div className='text-secondary'>Spawn Chance</div>
+                            <div>{pokemon.spawn_chance}</div>
+                            <div className='text-secondary'>Spawn Time:</div>
+                            <div>{pokemon.spawn_time}</div>
+                        </div>
+                    </div>
                         {/* divider */}
                         <hr />
                         <div className='row'>
