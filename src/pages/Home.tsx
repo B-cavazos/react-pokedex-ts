@@ -14,7 +14,12 @@ const HomePage: React.FC = () => {
     searchTerm === '' ? setPokemon(pokemonData) : setPokemon(foundPoke);
   }, []);
 
-  // useEffect(()=>{},[])
+  useEffect( () => {
+    const foundPoke = pokemonData.filter((p)=>{
+      return p.name.toLowerCase().includes(searchTerm.toLowerCase())
+    });
+    searchTerm === '' ? setPokemon(pokemonData): setPokemon(foundPoke);
+  },[searchTerm]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
