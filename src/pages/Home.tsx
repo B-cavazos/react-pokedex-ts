@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
-import { Link } from 'react-router-dom';
+import ListItem from '../components/ListItem';
 import { pokemonData } from '../data/pokemonData';
 
 const HomePage: React.FC = () => {
@@ -7,7 +7,6 @@ const HomePage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   useEffect(() => {
-    console.log('is this rendering');
     const foundPoke = pokemonData.filter(pk => {
       return pk.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
@@ -15,10 +14,14 @@ const HomePage: React.FC = () => {
     searchTerm === '' ? setPokemon(pokemonData) : setPokemon(foundPoke);
   }, []);
 
-  // useEffect(()=>{},[])
+  useEffect( () => {
+    const foundPoke = pokemonData.filter((p)=>{
+      return p.name.toLowerCase().includes(searchTerm.toLowerCase())
+    });
+    searchTerm === '' ? setPokemon(pokemonData): setPokemon(foundPoke);
+  },[searchTerm]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
     setSearchTerm(event.target.value);
   };
 
@@ -32,7 +35,6 @@ const HomePage: React.FC = () => {
           </h4>
         </div>
       </div>
-
       <div className='row my-3'>
         <div className='col'>
           <form action=''>
@@ -48,35 +50,7 @@ const HomePage: React.FC = () => {
           </form>
         </div>
       </div>
-      <div className='row'>
-        <div className='col'>
-          <ul className='list-group'>
-            {pokemon.map((poke, index) => {
-              return (
-                <li
-                  className='list-group-item d-flex justify-content-around align-items-center'
-                  key={index}>
-                  {/* section img pulled to left */}
-                  <img src={poke.img} alt={poke.name} />
-                  <div className='poke-info'>
-                    <h2>
-                      <Link to={`/pokemon/${poke.name.toLowerCase()}`}>
-                        {poke.name}
-                      </Link>
-                    </h2>
-                    <div>
-                      <small>Height: {poke.height}</small>
-                      <small>Weight: {poke.weight}</small>
-                    </div>
-                  </div>
-                  {/* section pokemon name that is wrapped in a link */}
-                  {/* section for details under the pokemon name */}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </div>
+      <ListItem pokemon={pokemon}/>
     </div>
   );
 };
