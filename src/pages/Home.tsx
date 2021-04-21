@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
-import { Link } from 'react-router-dom';
+import ListItem from '../components/ListItem';
 import { pokemonData } from '../data/pokemonData';
 
 const HomePage: React.FC = () => {
@@ -35,8 +35,29 @@ const HomePage: React.FC = () => {
           </h4>
         </div>
       </div>
-
       <div className='row my-3'>
+        <div className='col'>
+          <form action=''>
+            <div className='input-group'>
+              <input
+                type='text'
+                className='form-control'
+                value={searchTerm}
+                onChange={handleChange}
+                placeholder='Search Pokemon by Name...'
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+      <ListItem pokemon={pokemon}/>
+    </div>
+  );
+};
+
+export default HomePage;
+
+     {/* <div className='row my-3'>
         <div className='col'>
           <form action=''>
             <div className='input-group'>
@@ -59,7 +80,7 @@ const HomePage: React.FC = () => {
                 <li
                   className='list-group-item d-flex justify-content-around align-items-center'
                   key={index}>
-                  {/* section img pulled to left */}
+                  // section img pulled to left 
                   <img src={poke.img} alt={poke.name} />
                   <div className='poke-info'>
                     <h2>
@@ -72,16 +93,11 @@ const HomePage: React.FC = () => {
                       <small>Weight: {poke.weight}</small>
                     </div>
                   </div>
-                  {/* section pokemon name that is wrapped in a link */}
-                  {/* section for details under the pokemon name */}
+                  // section pokemon name that is wrapped in a link 
+                  // section for details under the pokemon name
                 </li>
               );
             })}
           </ul>
         </div>
-      </div>
-    </div>
-  );
-};
-
-export default HomePage;
+          </div>*/}
