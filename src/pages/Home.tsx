@@ -6,19 +6,14 @@ const HomePage: React.FC = () => {
   const [pokemon, setPokemon] = useState<Pokemon[]>(pokemonData);
   const [searchTerm, setSearchTerm] = useState<string>('');
 
-  useEffect(() => {
-    console.log('is this rendering');
-    const foundPoke = pokemonData.filter(pk => {
-      return pk.name.toLowerCase().includes(searchTerm.toLowerCase());
+  useEffect( () => {
+    const foundPoke = pokemonData.filter((p)=>{
+      return p.name.toLowerCase().includes(searchTerm.toLowerCase())
     });
-
-    searchTerm === '' ? setPokemon(pokemonData) : setPokemon(foundPoke);
-  }, []);
-
-  // useEffect(()=>{},[])
+    searchTerm === '' ? setPokemon(pokemonData): setPokemon(foundPoke);
+  },[searchTerm]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
     setSearchTerm(event.target.value);
   };
 
